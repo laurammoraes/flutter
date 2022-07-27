@@ -19,7 +19,38 @@ class FormularioTransferencia extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(title: Text('Criando transferência')),
-        body:Text('teste')
+        body:Column(
+          children:<Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child:  TextField(
+                style: TextStyle(
+                  fontSize: 24.0
+                ),  //TextStyle
+                decoration: InputDecoration(
+                  labelText: 'Número da conta',
+                  hintText: '000',
+                ) 
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child:  TextField(
+                style: TextStyle(
+                  fontSize: 24.0
+                ),  //TextStyle
+                decoration: InputDecoration(
+                  icon: Icon(Icons.monetization_on),
+                  labelText: 'Valor',
+                  hintText: '000',
+                ) 
+              ),
+            ),
+            ElevatedButton(
+              child: Text('Confirmar'),
+            )
+          ],
+        )
     );
 
   }
