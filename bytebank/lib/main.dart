@@ -15,6 +15,11 @@ class BytebankApp extends StatelessWidget{
 }
 
 class FormularioTransferencia extends StatelessWidget{
+
+  final TextEditingController _controladorCampoNumConta = TextEditingController();
+  final TextEditingController _controlarCampoValor = TextEditingController();
+
+  
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -24,6 +29,7 @@ class FormularioTransferencia extends StatelessWidget{
             Padding(
               padding: const EdgeInsets.all(8.0),
               child:  TextField(
+                controller: _controladorCampoNumConta,
                 style: TextStyle(
                   fontSize: 24.0
                 ),  //TextStyle
@@ -36,7 +42,9 @@ class FormularioTransferencia extends StatelessWidget{
             Padding(
               padding: const EdgeInsets.all(8.0),
               child:  TextField(
+                controller: _controlarCampoValor,
                 style: TextStyle(
+                 
                   fontSize: 24.0
                 ),  //TextStyle
                 decoration: InputDecoration(
@@ -46,8 +54,21 @@ class FormularioTransferencia extends StatelessWidget{
                 ) 
               ),
             ),
+           
             ElevatedButton(
               child: Text('Confirmar'),
+              onPressed: () {
+               
+
+                final int? numeroConta = int.tryParse(_controladorCampoNumConta.text);
+                final double? valor = double.tryParse(_controlarCampoValor.text);
+                
+
+                if(numeroConta != null && valor != null){
+                  final transferenciaCriada = Transferencia(valor, numeroConta);
+                  debugPrint('$transferenciaCriada');
+                }
+              },
             )
           ],
         )
@@ -83,6 +104,11 @@ class Transferencia {
   final int numeroConta;
 
   Transferencia(this.valor, this.numeroConta);
+  @override
+  String toString(){
+    return 'Transferencia{valor: $valor, numeroConta: $numeroConta}';
+  }
+
 }
 
 class ItemTransferencia extends StatelessWidget {
